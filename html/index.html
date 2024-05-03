@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><title>TTS Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <h1>TTS Website using AWS Polly</h1>
+
+    <div id="content">
+
+      Voice:
+
+      <select id="voiceSelected">
+        <option value="Zeina">Zeina (Arabic, Female)</option>
+        <option value="Zhiyu">Zhiyu (Chinese Mandarin, Female)</option>
+        <option value="Naja">Naja (Danish, Female)</option>
+        <option value="Mads">Mads (Danish, Male)</option>
+        <option value="Lotte">Lotte (Dutch, Female)</option>
+        <option value="Ruben">Ruben (Dutch, Male)</option>
+        <option value="Nicole">Nicole (English Australian, Female)</option>
+        <option value="Russell">Russell (English Australian, Male)</option>
+        <option value="Amy">Amy (English British, Female)</option>
+        <option value="Emma">Emma (English British, Female)</option>
+        <option value="Brian">Brian (English British, Male)</option>
+        <option value="Aditi">Aditi (English Indian, Female)</option>
+        <option value="Raveena">Raveena (English Indian, Female)</option>
+        <option value="Ivy">Ivy (English US, Female child)</option>
+        <option value="Joanna">Joanna (English US, Female)</option>
+        <option value="Kendra">Kendra (English US, Female)</option>
+        <option value="Kimberly">Kimberly (English US, Female)</option>
+        <option value="Salli">Salli (English US, Female)</option>
+        <option value="Joey">Joey (English US, Male)</option>
+        <option value="Kevin">Kevin (English US, Male child)</option>
+        <option value="Geraint">Geraint (English Welsh, Male)</option>
+        <option value="Celine">Céline (French, Female)</option>
+        <option value="Lea">Léa (French, Female)</option>
+        <option value="Mathieu">Mathieu (French, Male)</option>
+        <option value="Chantal">Chantal (French Canadian, Female)</option>
+        <option value="Marlene">Marlene (German, Female)</option>
+        <option value="Vicki">Vicki (German, Female)</option>
+        <option value="Hans">Hans (German, Male)</option>
+        <option value="Aditi">Aditi (Hindi, Female)</option>
+        <option value="Dora">Dóra (Icelandic, Female)</option>
+        <option value="Karl">Karl (Icelandic, Male)</option>
+        <option value="Carla">Carla (Italian, Female)</option>
+        <option value="Bianca">Bianca (Italian, Female)</option>
+        <option value="Giorgio">Giorgio (Italian, Male)</option>
+        <option value="Mizuki">Mizuki (Japanese, Female)</option>
+        <option value="Takumi">Takumi (Japanese, Male)</option>
+        <option value="Seoyeon">Seoyeon (Korean, Female)</option>
+        <option value="Liv">Liv (Norwegian, Female)</option>
+        <option value="Ewa">Ewa (Polish, Female)</option>
+        <option value="Maja">Maja (Polish, Female)</option>
+        <option value="Jacek">Jacek (Polish, Male)</option>
+        <option value="Jan">Jan (Polish, Male)</option>
+        <option value="Camila">Camila (Portuguese Brazilian, Female)</option>
+        <option value="Vitoria">Vitória (Portuguese Brazilian, Female)</option>
+        <option value="Ricardo">Ricardo (Portuguese Brazilian, Male)</option>
+        <option value="Ines">Inês (Portuguese European, Female)</option>
+        <option value="Cristiano">Cristiano (Portuguese European, Male)</option>
+        <option value="Carmen">Carmen (Romanian, Female)</option>
+        <option value="Tatyana">Tatyana (Russian, Female)</option>
+        <option value="Maxim">Maxim (Russian, Male)</option>
+        <option value="Conchita">Conchita (Spanish European, Female)</option>
+        <option value="Lucia">Lucia (Spanish European, Female)</option>
+        <option value="Enrique">Enrique (Spanish European, Male)</option>
+        <option value="Mia">Mia (Spanish Mexican, Female)</option>
+        <option value="Lupe">Lupe (Spanish US, Female)</option>
+        <option value="Penelope">Penélope (Spanish US, Female)</option>
+        <option value="Miguel">Miguel (Spanish US, Male)</option>
+        <option value="Astrid">Astrid (Swedish, Female)</option>
+        <option value="Filiz">Filiz (Turkish, Female)</option>
+        <option value="Gwyneth">Gwyneth (Welsh, Female)</option>
+      </select>
+
+      <input type="submit" value="Say it!" id="sayButton" class="buttons">
+
+      <span id="postIDreturned"></span>
+      </br></br>
+
+      <textarea id ="postText" maxlength="100"></textarea>
+      <span id="charCounter">Characters: 0</span>
+
+      </br></br></br></br>
+      <p>Provide post ID which you want to retrieve: <input type="text" id="postId"> <input type="submit" class="buttons" value="Search" id="searchButton">
+      <p>
+    </div>
+
+    <table id="posts">
+      <colgroup>
+        <col style="width:10%">
+        <col style="width:7%">
+        <col style="width:45%">
+        <col style="width:8%">
+        <col style="width:30%">
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>Post ID</th>
+          <th>Voice</th>
+          <th>Post</th>
+          <th>Status</th>
+          <th>Player</th>
+        </tr>
+      </tbody>
+    </table>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

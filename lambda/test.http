@@ -1,0 +1,11 @@
+POST https://ttsapi.matheusrizzi.com HTTP/1.1
+Content-Type: application/json
+
+{
+  "voice": "Joanna",
+  "text": "Hello from Joanna!"
+}
+
+###
+
+GET https://ttsapi.matheusrizzi.com?postId=* HTTP/1.1
