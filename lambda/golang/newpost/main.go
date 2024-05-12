@@ -40,7 +40,7 @@ func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.A
 	}
 
 	post.Id = uuid.New().String()
-	post.Status = "PROCESSING"
+	post.Status = "Processing"
 	log.Printf("Post to add to the table: %+v\n", post)
 
 	// Load the SDK's default configuration, credentials and region
@@ -66,7 +66,7 @@ func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.A
 		SnsClient: sns.NewFromConfig(cfg),
 	}
 	// Publish a message to the SNS topic
-	err = sns.Publish(os.Getenv("SNS_TOPIC"), post.Id, "", "", "", "")
+	err = sns.Publish(os.Getenv("SNS_TOPIC"), util.NewSnsMessage(table.TableName, post.Id), "", "", "", "")
 	if err != nil {
 		log.Printf("Error publishing SNS message: %+v\n", err)
 		return util.NewAPIGatewayProxyResponse(http.StatusInternalServerError, `{error: "internal server error"}`), nil

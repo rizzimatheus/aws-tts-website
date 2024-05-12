@@ -4,13 +4,31 @@ import (
 	"context"
 	"errors"
 	"log"
+	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/aws/arn"
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/expression"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 )
+
+// DynamoDBTableNameFromArn returns the name of the DynamoDB table from the
+// given ARN.
+func DynamoDBTableNameFromArn(tableArn string) (string, error) {
+	// EventSourceArn:arn:aws:dynamodb:us-east-1:531772278809:table/tts-website-table/stream/2024-05-11T08:33:35.234
+	parsedArn, err := arn.Parse(tableArn)
+	if err != nil {
+		panic(err)
+	}
+	values := strings.Split(parsedArn.Resource, "/")
+	if len(values) != 4 {
+		log.Printf("invalid resource: %s\n", parsedArn.Resource)
+		return "", errors.New("invalid resource")
+	}
+	return values[1], nil
+}
 
 // DynamodbTable represents a DynamoDB table.
 type DynamodbTable struct {

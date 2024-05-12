@@ -2,6 +2,7 @@ package util
 
 import (
 	"context"
+	"encoding/json"
 	"log"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -37,4 +38,16 @@ func (s SnsInstance) Publish(topicArn string, message string, groupId string, de
 		log.Printf("Couldn't publish message to topic %v. Here's why: %v", topicArn, err)
 	}
 	return err
+}
+
+// SnsMessage is a struct that represents a message sent to an Amazon SNS topic.
+type SnsMessage struct {
+	DynamodbTableId  string `json:"dynamodb_table_id"`
+	DynamodbRecordId string `json:"dynamodb_record_id"`
+}
+
+// NewSnsMessage returns a string of a new SnsMessage struct with the specified table and record IDs.
+func NewSnsMessage(tableId string, recordId string) string {
+	j, _ := json.Marshal(SnsMessage{DynamodbTableId: tableId, DynamodbRecordId: recordId})
+	return string(j)
 }

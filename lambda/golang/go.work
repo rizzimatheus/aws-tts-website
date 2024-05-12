@@ -4,5 +4,6 @@ use (
 	./convertaudio
 	./getposts
 	./newpost
+	./newpost-amplify
 	./util
 )

@@ -5,6 +5,8 @@ module "dynamodb_table" {
   name                        = "tts-website-table"
   hash_key                    = "id"
   table_class                 = "STANDARD"
+  stream_enabled              = true
+  stream_view_type            = "KEYS_ONLY"
   deletion_protection_enabled = false
 
   # List of nested attribute definitions.

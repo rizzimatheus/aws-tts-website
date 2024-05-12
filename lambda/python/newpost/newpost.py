@@ -22,7 +22,7 @@ def lambda_handler(event, context):
             'id' : record_id,
             'text' : text,
             'voice' : voice,
-            'status' : 'PROCESSING'
+            'status' : 'Processing'
         }
     )
 

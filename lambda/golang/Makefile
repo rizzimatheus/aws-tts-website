@@ -1,9 +1,10 @@
 
 NEW_POST=newpost
+NEW_POST_DYNAMODB=newpost-amplify
 CONVERT_AUDIO=convertaudio
 GET_POSTS=getposts
 
-build: build_newpost build_convertaudio build_getpost
+build: build_newpost build_newpost_amplify build_convertaudio build_getpost
 	@echo "Building binaries..."
 
 ## build_newpost: builds the newpost binary as a linux executable
@@ -12,6 +13,14 @@ build_newpost:
 	cd ./${NEW_POST} && \
 	env GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o ./bin/bootstrap .
 	cd ./${NEW_POST}/bin && zip ${NEW_POST} bootstrap
+	@echo "Done!"
+
+## build_newpost_amplify: builds the newpost amplify binary as a linux executable
+build_newpost_amplify:
+	@echo "Building newpost_amplify binary..."
+	cd ./${NEW_POST_DYNAMODB} && \
+	env GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -o ./bin/bootstrap .
+	cd ./${NEW_POST_DYNAMODB}/bin && zip ${NEW_POST_DYNAMODB} bootstrap
 	@echo "Done!"
 
 ## build_convertaudio: builds the convertaudio binary as a linux executable
@@ -33,6 +42,6 @@ build_getpost:
 ## go_work_init: initializes and writes a new go.work file in the current directory, 
 ## creating a new workspace at the current directory.
 go_work_init:
-	go work init ./util ./newpost ./getposts ./convertaudio
+	go work init ./util ./newpost ./newpost-amplify ./getposts ./convertaudio
 
-.PHONY: build build_newpost build_convertaudio build_getpost go_work
+.PHONY: build build_newpost build_newpost_amplify build_convertaudio build_getpost go_work
