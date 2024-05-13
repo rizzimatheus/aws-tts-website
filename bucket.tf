@@ -1,8 +1,15 @@
+resource "random_string" "s3_random" {
+  length  = 16
+  special = false
+  upper   = false
+  numeric = true
+}
+
 module "s3_storage" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 4.0"
 
-  bucket                  = "tts-website-storage"
+  bucket                  = "tts-website-storage-${random_string.s3_random.result}"
   acl                     = "public-read"
   block_public_acls       = false
   ignore_public_acls      = false

@@ -95,9 +95,9 @@ module "sqs_failure" {
 }
 
 data "aws_dynamodb_table" "dynamodb_public_table" {
-  name = "PublicPost-24or6mw5f5ezrerhjtupxwdyzi-NONE"
+  name = var.dynamodb_public_table
 }
 
 data "aws_dynamodb_table" "dynamodb_private_table" {
-  name = "PrivatePost-24or6mw5f5ezrerhjtupxwdyzi-NONE"
+  name = var.dynamodb_private_table
 }
