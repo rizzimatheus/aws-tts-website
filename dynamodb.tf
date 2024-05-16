@@ -1,19 +1,10 @@
-resource "random_string" "dynamodb_random" {
-  length  = 16
-  special = false
-  upper   = false
-  numeric = true
-}
-
 module "dynamodb_table" {
   source  = "terraform-aws-modules/dynamodb-table/aws"
   version = "~> 4.0"
 
-  name                        = "tts-website-table-${random_string.dynamodb_random.result}"
+  name                        = "tts-website-table-${random_string.random.result}"
   hash_key                    = "id"
   table_class                 = "STANDARD"
-  stream_enabled              = true
-  stream_view_type            = "KEYS_ONLY"
   deletion_protection_enabled = false
 
   # List of nested attribute definitions.

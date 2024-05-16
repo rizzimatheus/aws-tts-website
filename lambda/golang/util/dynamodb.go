@@ -17,7 +17,6 @@ import (
 // DynamoDBTableNameFromArn returns the name of the DynamoDB table from the
 // given ARN.
 func DynamoDBTableNameFromArn(tableArn string) (string, error) {
-	// EventSourceArn:arn:aws:dynamodb:us-east-1:531772278809:table/tts-website-table/stream/2024-05-11T08:33:35.234
 	parsedArn, err := arn.Parse(tableArn)
 	if err != nil {
 		panic(err)

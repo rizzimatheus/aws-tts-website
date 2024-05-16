@@ -16,12 +16,14 @@ variable "cert_domain_name" {
   default     = "*.matheusrizzi.com"
 }
 
-variable "dynamodb_public_table" {
-  type        = string
-  description = "The name of Public Dynamodb table"
+variable "create_golang_lambda" {
+  type        = bool
+  description = "Controls whether lambda functions in golang should be created"
+  default     = true
 }
 
-variable "dynamodb_private_table" {
-  type        = string
-  description = "The name of Private Dynamodb table"
+variable "create_python_lambda" {
+  type        = bool
+  description = "Controls whether lambda functions in python should be created"
+  default     = false
 }

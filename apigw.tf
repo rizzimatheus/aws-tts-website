@@ -2,7 +2,7 @@ module "api_gateway" {
   source  = "terraform-aws-modules/apigateway-v2/aws"
   version = "~> 4.0"
 
-  name          = "tts-website-api"
+  name          = "tts-website-api-${random_string.random.result}"
   description   = "TTS Website HTTP API Gateway"
   protocol_type = "HTTP"
 
@@ -25,7 +25,7 @@ module "api_gateway" {
   # Routes and integrations
   integrations = {
     "POST /" = {
-      lambda_arn             = module.lambda_newpost.lambda_function_arn
+      lambda_arn             = module.lambda_newpost_golang.lambda_function_arn
       payload_format_version = "2.0"
       timeout_milliseconds   = 12000
       throttling_rate_limit  = 5
@@ -33,7 +33,7 @@ module "api_gateway" {
     }
 
     "GET /" = {
-      lambda_arn             = module.lambda_getposts.lambda_function_arn
+      lambda_arn             = module.lambda_getposts_golang.lambda_function_arn
       payload_format_version = "2.0"
       timeout_milliseconds   = 12000
       throttling_rate_limit  = 5

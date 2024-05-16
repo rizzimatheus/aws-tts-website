@@ -1,8 +1,9 @@
-module "lambda_newpost" {
+module "lambda_newpost_golang" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "~> 7.0"
 
-  function_name          = "tts-website-newpost"
+  create                 = var.create_golang_lambda
+  function_name          = "tts-website-newpost-golang-${random_string.random.result}"
   description            = "Lambda function to handle new posts"
   handler                = "bootstrap"
   runtime                = "provided.al2023"
@@ -48,11 +49,12 @@ module "lambda_newpost" {
   }
 }
 
-module "lambda_getposts" {
+module "lambda_getposts_golang" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "~> 7.0"
 
-  function_name          = "tts-website-getposts"
+  create                 = var.create_golang_lambda
+  function_name          = "tts-website-getposts-golang-${random_string.random.result}"
   description            = "Lambda function to get posts from database"
   handler                = "bootstrap"
   runtime                = "provided.al2023"
@@ -89,11 +91,12 @@ module "lambda_getposts" {
   }
 }
 
-module "lambda_convertaudio" {
+module "lambda_convertaudio_golang" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "~> 7.0"
 
-  function_name          = "tts-website-convertaudio"
+  create                 = var.create_golang_lambda
+  function_name          = "tts-website-convertaudio-golang-${random_string.random.result}"
   description            = "Lambda function to convert new posts to mp3 files"
   handler                = "bootstrap"
   runtime                = "provided.al2023"
@@ -134,8 +137,6 @@ module "lambda_convertaudio" {
       ],
       resources = [
         module.dynamodb_table.dynamodb_table_arn,
-        data.aws_dynamodb_table.dynamodb_public_table.arn,
-        data.aws_dynamodb_table.dynamodb_private_table.arn,
       ]
     },
     s3 = {
