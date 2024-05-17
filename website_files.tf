@@ -29,3 +29,11 @@ resource "aws_s3_object" "scripts_js" {
   content_type = "text/javascript"
   etag         = filemd5("html/scripts.js")
 }
+
+resource "aws_s3_object" "favicon_ico" {
+  bucket       = module.s3_website.s3_bucket_id
+  key          = "favicon.ico"
+  source       = "html/favicon.ico"
+  content_type = "image/vnd.microsoft.icon"
+  etag         = filemd5("html/favicon.ico")
+}
